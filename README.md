@@ -12,6 +12,6 @@ in University written in the Perl Programming Language.
 | Trees                   | Code emulating tree data structures               |
 | Graphs                  | Code emulating Graph data structures              |
 | Recursion               | Recusion concept applicable for Divide and Conquer|
-| Sorting                 | |
-| Searching + BFS + DFS   | |
-| Dynamic Programming     | |
+| Sorting                 | Sorting Algorithms (bubble, select, insertion, merge) |
+| Searching + BFS + DFS   | Searching algorithms (BFS, DFS)                   |
+| Dynamic Programming     | Dynamic Programming and Memoization               |
