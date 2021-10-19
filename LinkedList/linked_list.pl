@@ -3,11 +3,14 @@ use warnings;
 use strict;
 use experimental 'signatures';
 
+#Linked List has Nodes. Each Node has a value and 
+# a pointer to the next node.
+
 package Node {
   sub new {
-    my ($class, $args) = @_;
+    my ($class, $data) = @_;
     my $self = {
-      data => $args,
+      data => $data,
       next => undef,
     };
     bless $self, $class;
@@ -26,22 +29,27 @@ package LinkedList {
     return $self;
   }
 
-  sub append($self, $data) {  #works
+  sub append($self, $data) {
     my $new_node = Node->new($data);
-    if (!defined $self->{head}) {
-      $self->{head} = $new_node;
+    if (!defined $self->{head}) {     #If there isn't at least one node already
+                                      # set the head and tail to the new node
+      $self->{head} = $new_node;      
       $self->{tail} = $self->{head};
       $self->{length} = 1;
     }
-    else {
+    else {                            #there are already nodes. Add node to end
+                                      # of linkedlist and set the tail to the
+                                      # new node
       $self->{tail}->{next} = $new_node;
       $self->{tail} = $new_node;
       $self->{length} += 1;
     }
   }
 
-  sub prepend($self, $data) { #works
-    my $new_node = Node->new($data); 
+  sub prepend($self, $data) {
+    my $new_node = Node->new($data);    #set new node's pointer to the current
+                                        # first node in linked list. Then set
+                                        # head to the new node
     $new_node->{next} = $self->{head};
     $self->{head} = $new_node;
     $self->{length} += 1;
