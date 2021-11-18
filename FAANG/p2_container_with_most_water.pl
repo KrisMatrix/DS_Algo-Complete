@@ -2,7 +2,7 @@
 use warnings;
 use strict;
 use experimental 'signatures';
-use List::Util qw(min);
+use List::Util qw(min max);
 
 ###############################################################################
 #Container With Most Water
@@ -43,11 +43,26 @@ sub container_with_most_water_naive(@array) {
   return $maxArea;
 }
 
-sub container_with_most_water_naive(@array) { 
-  my $maxArea = 0;
+sub container_with_most_water_optimal(@array) { 
+  #Time Complexity: O(n)
+  #Space Complexity: O(1)
+  my ($p1 , $p2, $maxArea) = (0, $#array, 0);
+  while ($p1 < $p2) {
+    my $width = $p2 - $p1;
+    my $height = min($array[$p2], $array[$p1]);
+    $maxArea = max($maxArea, $height * $width);
+    if ($array[$p1] < $array[$p2]) {
+      $p1++;
+    }
+    else {
+      $p2--;
+    }
+  }
+  return $maxArea;
 }
 
 my @array;
 
 @array = qw(1 8 6 2 5 4 8 3 7);
 print "Test Naive: ",container_with_most_water_naive(@array),"\n";
+print "Test Optimal: ",container_with_most_water_optimal(@array),"\n";
